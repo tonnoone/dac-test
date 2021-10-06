@@ -1,0 +1,17 @@
+Создание корневого сертификата
+==============================
+
+.. code-block:: powershell
+
+	$cert = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
+	-Subject "CN=P2SRootCert" -KeyExportPolicy Exportable `
+	-HashAlgorithm sha256 -KeyLength 2048 `
+	-CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign
+
+Источник: `документация`_
+
+.. _документация: https://docs.microsoft.com/ru-ru/azure/vpn-gateway/vpn-gateway-certificates-point-to-site
+
+Детальная статья, `как создать сертификат`_
+
+.. _как создать сертификат: https://winitpro.ru/index.php/2015/12/28/kak-sozdat-samopodpisannyj-sertifikat-v-windows/
