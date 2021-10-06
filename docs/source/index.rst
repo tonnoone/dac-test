@@ -9,6 +9,8 @@ and offers a *simple* and *intuitive* API.
 Check out the :doc:`usage` section for further information, including
 how to :ref:`installation` the project.
 
+.. _main-page:
+
 .. note::
 
    This project is under active development.
@@ -17,8 +19,10 @@ Contents
 --------
 
 .. toctree::
-    :glob:
-    :titlesonly:
+   :glob:
+   :titlesonly:
 
+   DSC/index
+   *
    usage
    api
