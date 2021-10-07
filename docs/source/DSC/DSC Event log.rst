@@ -15,6 +15,7 @@ DSC регистрирует эти события в журнале событ�
 Каналы аналитики и отладки не включены по умолчанию и должны быть включены на каждом целевом узле, прежде чем в них будут записаны какие-либо события:
 
 .. code-block:: PowerShell
+
     #enable analytic and debug DSC channels
     wevtutil.exe set-log "Microsoft-Windows-Dsc/Analytic" /q:true /e:true
     wevtutil.exe set-log "Microsoft-Windows-Dsc/Debug" /q:True /e:true
@@ -55,6 +56,7 @@ PowerShell
 Мы можем использовать командлет `Get-WinEvent` для сбора событий DSC. Мы можем запрашивать каналы DSC и сохранять события в массиве, а затем использовать командлет `Group-Object`, чтобы упорядочить их по свойству ID:
 
 .. code-block:: PowerShell
+
     # collect all logs from all channels
     $dscEvents = @(
     Get-WinEvent "Microsoft-windows-DSC/operational"
@@ -66,6 +68,7 @@ PowerShell
 Если вам интересно, можно ли пропустить использование `Oldest` с журналами аналитики и отладки, то нет, нельзя. Ошибка, которая появляется, когда вы пытаетесь это сделать, выглядит следующим образом:
 
 .. code-block:: PowerShell
+
     [PS]> Get-WinEvent "Microsoft-Windows-Dsc/Analytic"
     Get-WinEvent : The Microsoft-Windows-DSC/Analytic event log can be read
     only in the forward chronological order
@@ -83,6 +86,7 @@ PowerShell
 Дальнейшие запросы могут быть выполнены для результирующих данных путем сортировки и группировки объектов результата:
 
 .. code-block:: PowerShell
+
     # Group all logs based on the job ID
     $operations = $dscEvents | Group-Object {$_.Properties[0].value}
 
@@ -90,18 +94,21 @@ PowerShell
 Например, можно найти все события с уровнем серьезности ошибки, выполнив поиск ошибки:
 
 .. code-block:: PowerShell
+
     $operations | Where-Object {$_.Group.LevelDisplayName -contains "Error"}
 
 
 Или можно изучить сообщение из одного события:
 
 .. code-block:: PowerShell
+
     $operations[0].Group.Message
 
 
 Или можно найти все события с определенным идентификатором задания:
 
 .. code-block:: PowerShell
+    
     ($operations | Where-Object {$_.Name -eq 2025}).Group
 
 
