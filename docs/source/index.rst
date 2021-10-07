@@ -24,5 +24,3 @@ Contents
 
    DSC/index
    *
-   usage
-   api
