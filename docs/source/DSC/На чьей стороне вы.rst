@@ -56,7 +56,7 @@ Push и Pull в Desired State Configuration
 
 .. csv-table::
     :header: "Push", "Pull"
-    :widths: 30, 30
+    :widths: 10, 10
 
     "Плюсы:"
     "1. Стоимость. Не требует установки дополнительных серверов. 
